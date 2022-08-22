@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
+{% block extra_css %} 
+{% endblock extra_css %} 
+{% block content %} 
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">       
+        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/cpta">Child Protection & Advocacy</a></li>
+              <li><a href="/ectp">Community Therapy</a></li>
+              <li><a href="/wetcp">Wet Consulting</a></li>
+              <li><a href="/cep">Church Engagement</a></li>
+              <li><a href="/alp">Agri-business Livelihoods</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto active" href="/stories">Stories</a></li>
+          <li><a class="nav-link scrollto" href="/contact">Engage With Us</a></li>
+          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
+          <li><a class="donate scrollto" href="/donate">Donate</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+ <!-- ======= Blog Single Section ======= -->
+ <section id="blog" class="blog">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-8 entries">
+        <article class="entry entry-single">
+          {% for item in page.gallery_images.all %}
+            {% image item.image original as img %}
+            <div class="entry-img">
+              <img src="{{ img.url }}" alt="" class="img-fluid">
+            </div>
+          {% endfor %}
+          <h2 class="entry-title">
+            <a href="blog-single.html">{{ page.title }}</a>
+          </h2>
+          <p style=" color: purple; font-size: 24px; font-weight: bold;"><a href="{{  page.get_parent.url }}">Go to listing Page</a></p>
+          <div class="entry-meta">
+            <ul>
+              <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ self.author }}</a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ self.date }}">{{ page.date }}</time></a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">{{ page.comments }}</a></li>
+            </ul>
+          </div>
+
+          <div class="entry-content">
+            {{ page.body|richtext }}
+          </div>
+          <div class="entry-footer">
+            <i class="bi bi-folder"></i>
+            
+            <ul class="cats">
+              {% for category in categories %}
+              <li><a href="#">{{ category.name }}</a></li>
+              {% endfor %}
+            </ul>
+
+            <i class="bi bi-tags"></i>
+            <ul class="tags">
+              {% if page.tags.all.count %}
+              {% for tag in page.tags.all %}
+                <li><a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag.title }}</a></li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+
+        </article><!-- End blog entry -->
+
+      </div><!-- End blog entries list -->
+
+      <div class="col-lg-4">
+
+        <div class="sidebar">
+
+          <h3 class="sidebar-title">Search</h3>
+          <div class="sidebar-item search-form">
+            <form action="">
+              <input type="text">
+              <button type="submit"><i class="bi bi-search"></i></button>
+            </form>
+          </div><!-- End sidebar search formn-->
+
+          <h3 class="sidebar-title">Categories</h3>
+          <div class="sidebar-item categories">
+            {% with categories=page.categories.all %}
+              {% if categories %}
+                <h3>Posted in:</h3>
+                <ul>
+                  {% for category in categories %}
+                  <li><a href="#">General <span>(25)</span></a></li>
+                    <li><a href="#">{{ category.name }} <span>(25)</span></a></li>
+                        {% image category.icon fill-32x32 style="vertical-align: middle" %}
+                        {{ category.name }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+          </div><!-- End sidebar categories-->
+
+          <h3 class="sidebar-title">Recent Posts</h3>
+          <div class="sidebar-item recent-posts">
+            {% for post in sponsored_pages %}
+            {% with post=post.specific %}
+              <div class="post-item clearfix">
+                {% with post.main_image as main_image %}
+                  {% if main_image %}
+                    {% image main_image original as img %}
+                    <img src="{{ img.url }}" alt="" class="img-fluid">  
+                  {% endif %}
+                {% endwith %}
+                <h4><a href="blog-single.html">{{ post.title }}</a></h4>
+                <time datetime="2020-01-01">{{ post.date }}</time>
+              </div>
+            {% endwith %}
+            {% endfor %}
+
+          </div><!-- End sidebar recent posts-->
+          {% if page.tags.all.count %}
+          <h3 class="sidebar-title">Tags</h3>
+          <div class="sidebar-item tags">
+            <ul>
+                  {% for tag in page.tags.all %}
+                  <li><a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a></li>
+                  {% endfor %}
+                </div>
+              
+            </ul>
+          </div><!-- End sidebar tags-->
+          {% endif %}
+        </div><!-- End sidebar -->
+
+      </div><!-- End blog sidebar -->
+
+    </div>
+
+  </div>
+</section><!-- End Blog Single Section -->
+{% endblock %}

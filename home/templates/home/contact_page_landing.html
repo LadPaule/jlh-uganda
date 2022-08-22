@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
+{% block extra_css %} {% endblock extra_css %}
+{% block content %}
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">       
+        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/cpta">Child Protection & Advocacy</a></li>
+              <li><a href="/ectp">Community Therapy</a></li>
+              <li><a href="/wetcp">Wet Consulting</a></li>
+              <li><a href="/cep">Church Engagement</a></li>
+              <li><a href="/alp">Agri-business Livelihoods</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/stories">Stories</a></li>
+          <li><a class="nav-link scrollto active" href="/contact">Engage With Us</a></li>
+          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
+          <li><a class="donate scrollto" href="/donate">Donate</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <section id="team" class="team section-bg">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Message received!</h2>
+        <p style="text-align: left;">We have received your message and to thank you for writing to us. <br>
+          If your inquiry is urgent, please use the telephone number listed below to talk to one of our staff members. 
+
+          Otherwise, we will reply by email as soon as possible.
+          
+          Talk to you soon,<br>
+          Justice Livelihoods Uganda       
+        </p>
+        <p> <a href="{{ page.get_parent.url }}">Go back home</a></p>
+      </div>
+    </div>
+  </section>
+
+  {% endblock content %}
+
+{% block extra_js %}{% endblock extra_js %}

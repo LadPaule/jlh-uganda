@@ -1,0 +1,139 @@
+{% extends "base.html" %} 
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
+{% block extra_css %} {% endblock extra_css %}
+{% block content %}
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">       
+        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li><a class="nav-link scrollto active" href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/cpta">Child Protection & Advocacy</a></li>
+              <li><a href="/ectp">Community Therapy</a></li>
+              <li><a href="/wetcp">Wet Consulting</a></li>
+              <li><a href="/cep">Church Engagement</a></li>
+              <li><a href="/alp">Agri-business Livelihoods</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/stories">Stories</a></li>
+          <li><a class="nav-link scrollto" href="/contact">Engage With Us</a></li>
+          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
+          <li><a class="donate scrollto" href="/donate">Donate</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+
+   <!-- ======= About Us Section ======= -->
+   <section id="about" class="about" style="margin-top: -40px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row no-gutters">
+        <div class="col-lg-6 video-box" >
+          {% image self.side_image original as side %}
+          <img src="{{ side.url }}" style="vertical-align: sub;" class="img-fluid" alt="side.title">
+        </div>
+
+        <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+          <div class="section-title" style="margin-top: -30px;">
+            <h2 style="font-size: 20px">{{ self.about_us_title }}</h2>
+            <p>{{ self.about_us_narration }}</p>
+          </div>
+
+          <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+            <p>{{ self.about_us_body|richtext }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+
+     <!-- ======= About Us Section ======= -->
+     <section id="about" class="about" style="margin-top: -40px">
+      <div class="container" data-aos="fade-up">
+  
+        <div class="row no-gutters">
+          <div class="col-lg-6 d-flex flex-column justify-content-center about-content">  
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bi bi-eye-fill"></i></div>
+              <h4 class="title" style="color: green"><a href="">Our Vision</a></h4>
+              <p class="description">{{ self.vision }}</p>
+            </div>
+  
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-bullseye"></i></div>
+              <h4 class="title" style="color: green"><a href="">Mission statement</a></h4>
+              <p class="description">{{ self.purpose_statement }}</p>
+            </div>
+  
+          </div>
+          <div class="col-lg-6 flex-column justify-content-center about-content">
+            <h4 class="title" style="font-weight: 400; color: green">Aims</h4>
+            {% for aim in self.values_items.all %}
+            <p><i style="padding-right: 5px; color: blue;" class="bi bi-brightness-low-fill"></i>{{ aim.title }}</p>
+            {% endfor %}
+            {% comment %} Missions {% endcomment %}
+            <h4 class=" title "style="font-weight: 400; color: green;" >Our Objectives </h4>
+            {% for mission in self.objective_items.all %}
+            <div class="row" style="display: flex">
+              <p><i style="padding-right: 5px; color: blue;" class="bi bi-brightness-low-fill"></i>{{ mission.title }}</p>
+            </div>
+            
+            {% endfor %}
+          </div>
+
+        </div>
+  
+      </div>
+    </section><!-- End About Us Section -->
+  
+
+        <!-- ======= Our Team Section ======= -->
+        <section id="team" class="team">
+          <div class="container" data-aos="fade-up">
+    
+            <div class="section-title">
+              <h2>Our Team</h2>
+              <p>The talented People behind the Justice Livelihood Health Uganda Work</p>
+            </div>
+    
+            <div class="row">
+              {% for member in self.organogram_items.all %}
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                  {% image member.image original as im %}
+                  <div class="member">
+                    <div class="pic"><img src="{{ im.url }}" class="img-fluid" alt="{{ member.title }}"></div>
+                    <div class="member-info">
+                      <h4>{{ member.title }}</h4>
+                      <span>{{ member.designation }}</span>
+                      <div class="social">
+                        <a href="https://www.twitter.com/{{ member.twitter_link }}" target="blank" ><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.facebook.com/{{ member.facebook_link }}" target="blank" ><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.linkedin.com/{{ member.linkedIn_link }}" target="blank" ><i class="bi bi-linkedin"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+
+            </div>
+    
+          </div>
+        </section><!-- End Our Team Section -->
+
+  {% endblock content %}
+
+{% block extra_js %}{% endblock extra_js %}

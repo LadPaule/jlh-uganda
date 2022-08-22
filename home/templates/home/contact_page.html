@@ -1,0 +1,109 @@
+{% extends "base.html" %} 
+{% load static crispy_forms_tags wagtailcore_tags wagtailimages_tags wagtailembeds_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
+{% block extra_css %} {% endblock extra_css %}
+{% block content %}
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">       
+        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/cpta">Child Protection & Advocacy</a></li>
+              <li><a href="/ectp">Community Therapy</a></li>
+              <li><a href="/wetcp">Wet Consulting</a></li>
+              <li><a href="/cep">Church Engagement</a></li>
+              <li><a href="/alp">Agri-business Livelihoods</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/stories">Stories</a></li>
+          <li><a class="nav-link scrollto active" href="/contact">Engage With Us</a></li>
+          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
+          <li><a class="donate scrollto" href="/donate">Donate</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+    <!-- ======= Map Section ======= -->
+    <section class="map mt-2">
+      <h1 style="text-align: center;">Engage with us</h1>
+  
+      <div class="container-fluid p-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2821.1738140699895!2d32.599251672352665!3d0.35376372022159297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfcc8ea15629f0151!2zMMKwMjEnMTAuMyJOIDMywrAzNSc1Ny4yIkU!5e0!3m2!1sen!2sug!4v1659345848725!5m2!1sen!2sug" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section><!-- End Map Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+          <div class="col-lg-10">
+            <div class="info-wrap">
+              <div class="row">
+                <div class="col-lg-4 info">
+                  <i class="bi bi-geo-alt"></i>
+                  <h4>Location:</h4>
+                  <p>{{ self.location }}</p>
+                </div>
+               
+                
+                <div class="col-lg-4 info mt-4 mt-lg-0">
+                  <i class="bi bi-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>{{ self.email }}</p>
+                </div>
+  
+                <div class="col-lg-4 info mt-4 mt-lg-0">
+                  <i class="bi bi-phone"></i>
+                  <h4>Call:</h4>
+                  <p>{{ self.phone }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-5 justify-content-center" data-aos="fade-up">
+          <div class="col-lg-10">
+            <form action="{% pageurl page %}" method="POST" role="form" class="php-email-form">
+              {% csrf_token %}
+   
+              <div class="row">
+                <div class="col-md-6 form-group">
+                    {{ form.your_name|as_crispy_field }}
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  {{ form.phone_number|as_crispy_field }}
+                </div>
+                <div class="form-group mt-3">
+                  {{ form.email|as_crispy_field }}
+                </div>
+              </div>
+              <div class="form-group mt-3">
+               {{ form.subject|as_crispy_field }}
+              </div>
+              <div class="form-group mt-3">
+                {{ form.message|as_crispy_field }}
+              </div>
+              <div class="text-center">
+                <button type="submit">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </section>   
+ 
+  </main>
+
+  {% endblock content %}
+
+{% block extra_js %}{% endblock extra_js %}

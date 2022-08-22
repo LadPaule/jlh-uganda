@@ -1,0 +1,170 @@
+{% extends "base.html" %} 
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
+{% block extra_css %} {% endblock extra_css %}
+{% block content %}
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">       
+        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/cpta">Child Protection & Advocacy</a></li>
+              <li><a href="/ectp">Community Therapy</a></li>
+              <li><a href="/wetcp">Wet Consulting</a></li>
+              <li><a href="/cep">Church Engagement</a></li>
+              <li><a href="/alp">Agri-business Livelihoods</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/stories">Stories</a></li>
+          <li><a class="nav-link scrollto" href="/contact">Engage With Us</a></li>
+          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
+          <li><a class="donate scrollto" href="/donate">Donate</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+        <div class="carousel-inner" role="listbox">
+
+          {% for item in self.carousel_items.all %}
+            {% image item.featured_photo original as fp %}
+            <div class="carousel-item  {% if forloop.first %} active {% endif %}" style="background-image: url('{{ fp.url }}');">
+              <div class="carousel-container">
+                <div class="carousel-content container">
+                  <h2 style="font-size: 42px;" class="animate__animated animate__fadeInDown">{{ item.featured_photo_title }}</h2>
+                  <p class="animate__animated animate__fadeInUp">{{ item.caption }}</p>
+                  <a href="{{ item.quick_link }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row no-gutters">
+          <div class="col-lg-6 video-box">
+            {% image self.side_image original as sim %}
+            <img src="{{ sim.url }}" class="img-fluid" alt="{{sim.title}}">
+          </div>
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+            <div class="section-title">
+              <h2 style="font-size: 20px;">{{ self.about_us_title }}</h2>
+              <p>{{ self.short_description|richtext }}</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="{{ self.vision_icon_class }}"></i></div>
+              <h4 class="title"><a href="">Our Vision</a></h4>
+              <p class="description">{{ self.vision }}</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="{{ self.mission_icon_class }}"></i></div>
+              <h4 class="title"><a href="">Our Mission</a></h4>
+              <p class="description">{{ self.mission }}</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+        <div class="text-center">
+          <h3 style="color: green; font-weight: bold;">Our Work</h3>
+          <p>At Justice Livelihoods Health Uganda, we strive to see the lives of poor disadvantaged communities transformed from poverty to
+            opportunity, inequality to justice, and despair to hope.</p>
+       </div>
+  
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            {% for cause in self.work_items.all %}
+              {% image cause.cause_image original as im %}
+       
+                <div class="swiper-slide col-lg-4 row">
+                  <img src="{{im.url}}" class="img-fluid" alt="{{ cause.title }}" >
+                  <a href="{{cause.link}}"><h1 style="font-size: 20px; ">{{ cause.title }}</h1></a>
+                  <p>{{ cause.description }}</p>
+                </div>
+
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+  
+      </div>
+    </section><!-- End Clients Section -->
+
+     <!-- ======= Counts Section ======= -->
+     <section class="counts section-bg">
+      <div class="container">
+
+        <div class="row" style="display: flex; flex-direction: center; justify-content: center;">
+          {% for count in self.statistics_items.all  %}
+            <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up">
+              <div class="count-box">
+                <i class="bi bi-simple-smile" style="color: #20b38e;"></i>
+                <span data-purecounter-start="0" data-purecounter-end="{{ count.number }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{{ count.title }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+ <!-- ======= Cta Section ======= -->
+ <section id="cta" class="cta">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-9 text-center text-lg-left">
+        <h3>We've impacted <span data-purecounter-start="0" data-purecounter-end="{{ self.annual_beneficiary_count }}" data-purecounter-duration="1" class="purecounter"></span> beneficiaries this year!</h3>
+        <p>Justice Livelihoods Health Uganda is a Non government Organisation relying mostily on the generous support of our friends and Partners. You too can be a part of our life impacting programs. </p>
+      </div>
+      <div class="col-lg-3 cta-btn-container text-center">
+        <a class="cta-btn align-middle" href="/donate">Get Involved</a>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Cta Section -->
+  </main><!-- End #main -->
+{% endblock content %}
+
+{% block extra_js %}{% endblock extra_js %}
+

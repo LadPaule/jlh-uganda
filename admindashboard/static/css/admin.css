@@ -1,0 +1,155 @@
+.sidebar__inner {
+  background: #1c1d1bc0 !important;
+}
+.bicolor button button-small icon icon-plus white{
+  background: #006697 !important;
+}
+
+.sidebar-menu-item .sidebar-page-explorer-item .sidebar-menu-item--active{
+  background: #529c08c0 !important;
+}
+.sidebar-sub-menu-panel{
+  background: #1c1d1bf3 !important; 
+}
+.icon icon-folder-open-1 icon{
+  color: #fff !important;
+}
+header h1{
+  color: #fff !important;
+}
+.user-name{
+  color: #fff !important;
+}
+.avatar img{
+  border-radius: 50% !important;
+}
+
+.sidebar-menu-item .sidebar-page-explorer-item .sidebar-menu-item--active{
+  background: #006697 !important;
+}
+
+.summary ul.stats span{
+  color: #006697 !important;  
+  font-weight: bold !important;
+  font-size: 50px !important;
+}
+.summary ul.stats a{
+  color: #006697 !important;  
+  font-size: 16px !important;
+}
+
+.breadcrumb {
+  background: #006697 !important;
+}
+
+body.ready .sidebar-nav-toggle{
+  background: #006797be !important;
+}
+header .field-content{
+  border: none !important;
+  border-color: none !important;
+  outline: none !important;
+}
+
+*:focus{
+  outline: none !important;
+}
+
+.index {
+  background: #006697 !important;
+}
+
+.breadcrumb .arrow_right_icon {
+  color: #fff !important;
+}
+.hasform {
+  background: #006697 !important;
+}
+header {
+  background: #006697 !important;
+}
+.Draftail-Toolbar{
+  background: #0c0016 !important;
+  color: #fff !important;
+}
+.title-wrapper{
+  background: #4c0388 !important;
+  color: #fff !important;
+}
+.object>.title-wrapper:before{
+  background: #3B5CAA !important;
+  color: #fff !important;
+}
+.object>.title-wrapper:after{
+  background: #3B5CAA !important;
+  color: #fff !important;
+}
+header .search-form .icon{
+  color: #006697 !important;
+}
+
+.object>.title-wrapper{
+  background: #3B5CAA !important;
+  color: #fff !important;
+}
+.footer__container:first-child{
+  background: #10001d !important;
+  color: #fff !important;
+}
+.footer__container{
+  background: #10001d  !important;
+  color: #fff !important;
+}
+.listing .title .title-wrapper, .listing .title h2{
+  background: #fff !important;
+  color: #fff !important;
+}
+.object>.title-wrapper{
+  padding-left: 80px;
+  padding-left: 80px;
+}
+.object>.title-wrapper > h2{
+  font-size: medium;
+  font-weight: 400;
+}
+.nav-wrapper .inner{
+  background: #3B5CAA !important;
+  color: #fff !important;
+}
+.c-explorer__header{
+  color: #fff !important;
+}
+.wagtail-userbar-nav{
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.c-page-explorer__item__link{
+  background: #10001d  !important;
+}  
+.c-page-explorer__item>:not([hidden])~:not([hidden]){
+  background: #10001d  !important;
+}
+.c-page-explorer__header__title__inner{
+  color: #fff !important;
+  background: #006697 !important;
+}
+
+.c-page-explorer__header{
+  background: #006697 !important;
+}
+.c-page-explorer__drawer{
+  background: #1c1d1bc0 !important; 
+}
+
+.c-page-explorer__item :hover{
+  background: #1a0149cb !important;
+
+}
+
+.listing .title .title-wrapper a, .listing .title h2 a{
+  color: #3B5CAA !important;
+}
+header h1>svg.icon{
+  color: #fff;
+}

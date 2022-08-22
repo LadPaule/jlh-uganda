@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %} 
+{% block body_class %}template-homepage{% endblock %} 
+{% block extra_css %} 
+{% endblock extra_css %} 
+
+{% block content %} 
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">       
+        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/cpta">Child Protection & Advocacy</a></li>
+              <li><a href="/ectp">Community Therapy</a></li>
+              <li><a href="/wetcp">Wet Consulting</a></li>
+              <li><a href="/cep">Church Engagement</a></li>
+              <li><a href="/alp">Agri-business Livelihoods</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto active" href="/stories">Stories</a></li>
+          <li><a class="nav-link scrollto" href="/contact">Engage With Us</a></li>
+          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
+          <li><a class="donate scrollto" href="/donate">Donate</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+
+<!-- ======= Blog Single Section ======= -->
+ <section id="blog" class="blog" style="margin-top:-20px;">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-11 entries" style="display: flex; align-items: center; justify-content: center;  align-self: center;">
+        <article class="entry entry-single">
+            {% image self.featured_story_image original as img %}
+            <div class="entry-img">
+              <img src="{{ img.url }}" alt="" class="img-fluid" style="border-radius: 10px;">
+            </div>
+          <h2 class="entry-title">
+            <p>{{ self.featured_story_title }}</p>
+          </h2>
+          <div class="entry-meta">
+            <ul>
+              <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ self.author }}</a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ self.date }}">{{ page.date }}</time></a></li>
+            </ul>
+          </div>
+          <div class="entry-content">
+            {{ page.featured_story_body|richtext }}
+          </div>
+          <div class="entry-footer">
+            <i class="bi bi-folder"></i>
+            
+            <ul class="cats">
+              {% for category in categories %}
+              <li><a href="#">{{ category.name }}</a></li>
+              {% endfor %}
+            </ul>
+
+            <i class="bi bi-tags"></i>
+            <ul class="tags">
+              {% if page.tags.all.count %}
+              {% for tag in page.tags.all %}
+                <li><a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag.title }}</a></li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+
+        </article><!-- End blog entry -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="blogList" class="blogList" style="">
+
+  <div class="section-title">
+    <h2>Other Stories</h2>
+  </div>
+
+  <div class="container" data-aos="fade-up">
+    <div class="row" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+      
+      {% for post in sponsored_pages %}
+        {% with post=post.specific %}
+        <article class="entry col-lg-4" style="width: 365px;">
+          <div class="entry-img">
+            {% with post.main_image as main_image %}
+              {% if main_image %}
+                {% image main_image original as img %}
+                <div class="entry-img">
+                  <img src="{{ img.url }}" alt=""  class="img-fluid">  
+                </div>
+              {% endif %}
+            {% endwith %}
+          </div>            
+          <h2 class="entry-title">
+            <a href="{% pageurl post %}" style="font-size: 20px; color: blue; font-weight: black;">{{ post.title }}</a>
+          </h2>
+          <div class="entry-meta">
+            <ul>
+              <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{% pageurl post %}">{{ post.author }}</a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{% pageurl post %}"><time datetime="{{ post.date }}">{{post.date}}</time></a></li>
+            </ul>
+          </div>
+          <div class="entry-content">
+            {{ post.body|richtext|truncatewords:20 }}
+            <div class="read-more" style="align-items: center;">
+              <a href="{% pageurl post %}" center>Read More</a>
+            </div>
+          </div>
+        </article>
+        {% endwith %}
+      {% endfor %}
+       
+      {% if sponsored_pages.paginator.num_pages > 1 %}
+      <div class="blog-pagination">
+        <ul class="justify-content-center">
+          {% if sponsored_pages.has_previous %}
+            <li class=" pagina"><a href="?page={{ sponsored_pages.previous_page_number }}"><i id="pagination-icon" style="font-weight: black; font-size: 25px; color: #006697; background: none;" class="bi bi-chevron-double-left"></i></a></li>
+          {% endif %}
+          {% for page_num in sponsored_pages.paginator.page_range %}
+              <li class=" pagina {% if page_num == sponsored_pages.number %} active{% endif %}">
+                <a href="?page={{ page_num }}">
+                  {{ page_num }}
+                </a>
+              </li>
+            {% endfor %}
+          {% if sponsored_pages.has_next %}
+            <li class=" pagina" ><a href="?page={{ sponsored_pages.next_page_number }}"> <i id="pagination-icon" style="font-weight: black; font-size: 25px; color: #006697; background: none;" class="bi bi-chevron-double-right"></i></a></li>
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</section> 
+
+ 
+
+  	
+{% endblock %}

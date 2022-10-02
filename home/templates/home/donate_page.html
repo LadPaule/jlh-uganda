@@ -1,114 +1,179 @@
 {% extends "base.html" %} 
 {% load static wagtailcore_tags crispy_forms_tags wagtailimages_tags wagtailembeds_tags %} 
-{% block body_class %}template-homepage{% endblock %} 
-{% block extra_css %} {% endblock extra_css %}
+{% block body_class%}template-homepage{% endblock %} {% block extra_css %} {% endblock extra_css %}
 {% block content %}
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-      <div class="logo me-auto">       
-        <a href="/"><img src="{% static 'brand/jlh_logo.png' %}" alt="JLH-Uganda logo" class="img-fluid"></a>
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-
-          <li><a class="nav-link scrollto" href="/about">About Us</a></li>
-          <li class="dropdown"><a href="#"><span>What we do</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="/cpta">Child Protection & Advocacy</a></li>
-              <li><a href="/ectp">Community Therapy</a></li>
-              <li><a href="/wetcp">Wet Consulting</a></li>
-              <li><a href="/cep">Church Engagement</a></li>
-              <li><a href="/alp">Agri-business Livelihoods</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="/stories">Stories</a></li>
-          <li><a class="nav-link scrollto" href="/contact">Engage With Us</a></li>
-          <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>           
-          <li><a class="donate scrollto active" href="/donate">Donate</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+<!-- ======= Header ======= -->
+<header id="header" class="d-flex align-items-center">
+  <div class="container d-flex align-items-center">
+    <div class="logo me-auto">
+      <a href="/"
+        ><img
+          src="{% static 'brand/jlh_logo.png' %}"
+          alt="JLH-Uganda logo"
+          class="img-fluid"
+      /></a>
     </div>
-  </header><!-- End Header -->
 
- <!-- ======= Hero Section ======= -->
- <section id="donate" class="d-flex align-items-center" style="width: 100%; height: 60vh;  background: #fff;">
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+        <li class="dropdown">
+          <a href="#"
+            ><span>What we do</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li><a href="/cpta">Child Protection & Advocacy</a></li>
+            <li><a href="/ectp">Community Therapy</a></li>
+            <li><a href="/wetcp">Wet Consulting</a></li>
+            <li><a href="/cep">Church Engagement</a></li>
+            <li><a href="/alp">Agri-business Livelihoods</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link scrollto" href="/stories">Stories</a></li>
+        <li><a class="nav-link scrollto" href="/contact">Engage With Us</a></li>
+        <li><a class="nav-link scrollto" href="/gallery">Gallery</a></li>
+        <li><a class="donate scrollto active" href="/donate">Donate</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+<!-- End Header -->
 
+<!-- ======= Hero Section ======= -->
+<section
+  id="donate"
+  class="d-flex align-items-center"
+  style="width: 100%; height: 60vh; background: #fff"
+>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-        <h1 style="margin: 0; font-size: 48px; font-weight: 700; line-height: 56px; color: #3e4450;">WE LOVE OUR PERIODIC DONORS</h1>
-        <h2 style="  color: #858ea1;  margin: 10px 0 30px 0; font-size: 24px;">You are the backbone of our funding, faithfully committing to give what they can periodically to help make our work possible</h2>
+      <div
+        class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center"
+      >
+        <h1
+          style="
+            margin: 0;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 56px;
+            color: #3e4450;
+          "
+        >
+          WE LOVE OUR PERIODIC DONORS
+        </h1>
+        <h2 style="color: #858ea1; margin: 10px 0 30px 0; font-size: 24px">
+          You are the backbone of our funding, faithfully committing to give
+          what they can periodically to help make our work possible
+        </h2>
       </div>
       <div class="col-lg-6 order-1 order-lg-2 hero-img">
         {% image self.hero_image original as img %}
-        <img src="{{ img.url }}"  style="border-radius: 10px;" class="img-fluid animated" alt="">
+        <img
+          src="{{ img.url }}"
+          style="border-radius: 10px"
+          class="img-fluid animated"
+          alt=""
+        />
       </div>
     </div>
   </div>
+</section>
+<!-- End Hero -->
 
-</section><!-- End Hero -->
-
-
-  <section id="about" class="about">
-    <div class="container" data-aos="fade-up">
-
-      <div class="row no-gutters">
-        
-        <div class="col-lg-6 video-box">
-          <div class="section-title">
-            <h2>Donate to Justice Livelihood Health</h2>
-            <p>
-              Your generosity is making a difference in our target beneficiaries. As a friend of JLH-Uganda, we want you feel connected to our mission and the impact your donation will make.
-            </p>
-          </div>
-          <p style="font-size: 18px; text-align: left;">
-            We are a non-profit organization that relies on the generosity of our donors to provide the necessary support to our beneficiaries.
-            Join Friends of JLH-Uganda, a group of passionate donors determined to make a difference through sustaining monthly contributions. 
+<section id="about" class="about">
+  <div class="container" data-aos="fade-up">
+    <div class="row no-gutters">
+      <div class="col-lg-6 video-box">
+        <div class="section-title">
+          <h2>Donate to Justice Livelihood Health</h2>
+          <p>
+            Your generosity is making a difference in our target beneficiaries.
+            As a friend of JLH-Uganda, we want you feel connected to our mission
+            and the impact your donation will make.
           </p>
-
         </div>
-
-        <div class="col-lg-6 d-flex flex-column justify-content-center about-content" style="background: rgba(80, 7, 250, 0.2);   box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 1);">
-          <p style="background: blue; height: 40px; margin-top: -40px; color: #fff; font-size: 24px; font-weight: bold; vertical-align: middle;" class="text-center">Donate Form</p>
-          <form action="{% pageurl page %}" method="POST" role="form" class="php-email-form">
-            {% csrf_token %}
-          
-            <div class="row" style="padding: 20px 0 20px 0;">
-              <div class="col-md-6 form-group">
-                  {{ form.full_name|as_crispy_field }}
-              </div>
-              <div class="col-md-6 form-group">
-            {{ form.email|as_crispy_field }}
-            </div>
-            </div>
-            <div class="row" style="padding: 20px 0 20px 0;">
-              <div class="col-md-4 form-group">
-                {{ form.country|as_crispy_field }}
-              </div>
-              <div class="col-md-8 form-group mt-3 mt-md-0">
-                {{ form.phone|as_crispy_field }}
-              </div>
-            </div>
-            <div class="col" style="padding: 20px 0 20px 0;">
-              <div class="col-md-12 form-group mt-3 mt-md-0">
-                {{ form.donation_usd|as_crispy_field }}
-              </div>
-            </div>
-            <div class="text-center" style="padding: 20px 0 20px 0;">
-              <button class="btn btn-primary" type="submit">Send Message</button>
-            </div>
-          </form>
-
-        </div>
-
+        <p style="font-size: 18px; text-align: left">
+          We are a non-profit organization that relies on the generosity of our
+          donors to provide the necessary support to our beneficiaries. Join
+          Friends of JLH-Uganda, a group of passionate donors determined to make
+          a difference through sustaining monthly contributions.
+        </p>
       </div>
 
+      <div
+        class="col-lg-6 d-flex flex-column justify-content-center about-content"
+        style="
+          background: rgba(80, 7, 250, 0.2);
+          box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 1);
+        "
+      >
+        <p
+          style="
+            background: blue;
+            height: 40px;
+            margin-top: -40px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            vertical-align: middle;
+          "
+          class="text-center"
+        >
+          Donate Form
+        </p>
+        <form
+          action="https://checkout.flutterwave.com/v3/hosted/pay"
+          method="POST"
+          role="form"
+          class="php-email-form"
+        >
+          {% csrf_token %}
+
+          <div class="row" style="padding: 20px 0 20px 0">
+            <div class="col-md-6 form-group">
+              <input type="text" name="customer[name]"  class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <input type="hidden" name="public_key" value="FLWPUBK-38ae6e365afe73dd0efd2c29edba0452-X" />
+            <input type="hidden" name="tx_ref" value="bitethtx-019203" />
+            <input type="hidden" name="currency" value="UGX" />
+
+            <div class="col-md-6 form-group">
+              <input type="email" name="customer[email]" class="form-control" id="name" placeholder="yourname@domain.com" required>
+            </div>
+          </div>
+          <div class="row" style="padding: 20px 0 20px 0">
+            <div class="col-md-4 form-group">
+              <input type="text" name="country" class="form-control" id="name" placeholder="Country" required>
+            </div>
+            <div class="col-md-8 form-group mt-3 mt-md-0">
+              <input type="text" name="phone" class="form-control" id="name" placeholder="Phone Number" required>
+            </div>
+          </div>
+          <div class="col" style="padding: 20px 0 20px 0">
+            <div class="col-md-12 form-group mt-3 mt-md-0">
+              <input type="number" name="amount"  class="form-control" id="name" placeholder="Donation in UGX" required>
+            </div>
+          </div>
+          <div class="text-center" style="padding: 20px 0 20px 0">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="start-payment-button"
+              onclick="makePayment()"
+            >
+              Pay Now
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  {% endblock content %}
+{% endblock content %} 
+{% block extra_js %} 
+<script src="{% static 'djangorave/js/payment.js' %}"></script>
 
-{% block extra_js %}{% endblock extra_js %}
+{% endblock extra_js %}

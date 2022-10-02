@@ -1438,6 +1438,12 @@ section {
 --------------------------------------------------------------*/
 .blog {
   padding: 40px 0 20px 0;
+
+}
+@media only screen and (min-width: 900px){
+  .blog{
+    margin-left: 100px;
+  }
 }
 .blog .entry {
   padding: 30px;

@@ -7,15 +7,19 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+from home.views import payment_response
 
 urlpatterns = [
     path('django-admin/', admin.site.urls),
 
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
-
+    path('callback', payment_response, name='payment_response'),
     path('search/', search_views.search, name='search'),
 
+    path('accounts/', include('allauth.urls')),
+
+    path("djangorave/", include("djangorave.urls", namespace="djangorave"))
 ]
 
 
